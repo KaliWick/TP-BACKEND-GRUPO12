@@ -1,5 +1,6 @@
 const express = require ('express');
 const app = express();
+const port = 3000;
 
 const categoriasRoutes = require('../routes/categorias');
 const comentariosRoutes = require('../routes/comentarios');
@@ -14,7 +15,11 @@ app.use('/comentarios',comentariosRoutes);
 app.use('/peliculas',peliculasRoutes);
 app.use('/usuarios',usuariosRoutes);
 
-const port = 3000;
+const path = require('path');
+const exp = require('constants');
+
+app.use(express.static(path.join(__dirname,'public')));
+
 
 app.listen(port,()=>{
     console.log(`Servidor funcionando en el puerto ${port}`); 

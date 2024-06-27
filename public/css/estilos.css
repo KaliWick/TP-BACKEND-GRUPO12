@@ -1,0 +1,29 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+.contenedorPeliculas {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    justify-content: space-between;
+}
+
+.pelicula {
+    text-align: center; 
+}
+.pelicula img 
+{
+    width: 70%;
+    height: 16em;
+}
+
+.principal img
+{
+    width: 100%;
+}
+.principal
+{
+    width: 100%;
+}
