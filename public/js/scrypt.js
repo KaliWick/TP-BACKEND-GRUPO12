@@ -1,94 +1,49 @@
-const apiKey = '27a1abbc';
-
-let getMovies = async () => {
-  const popularMoviesTitles = [
-    'Avengers Endgame',
-    'Whiplash',
-    'Joker',
-    'The Dark Knight',
-    'Flash',
-    'The Revenant',
-    'Mad Max: Fury Road',
-    'Gladiator',
-    'Pulp Fiction',
-    'Fight Club',
-    'Guardians of the Galaxy Vol. 3',
-    'Interstellar',
-    'Avatar',
-    'The Godfather',
-    'Minions',
-    'Back to the Future',
-    '¡Shazam!',
-    'Justice League',
-    'Drive',
-    'Barbie',
-    'Harry Potter',
-    'Frozen',
-    'Shutter island',
-    'Suicide squad',
-    'The Terminator',
-    'Rocky',
-    'Toy Story',
-    'Rambo',
-    'Madagascar',
-    'Alien',
-    'Blade Runner 2049',
-    'Pirates of the Caribbean',
-    'The Fast and the Furious',
-    '2 fast 2 furious',
-    'The Fast and the Furious: Tokyo Drift',
-    'Mad Max',
-    'Ghostbusters',
-    'The Green Mile',
-    'Godzilla Minus One',
-    'Haikyu'
+document.addEventListener('DOMContentLoaded', () => {
+  const categoria1 = [
+      { title: "Intensamente", image: "../img/intensamente.png" },
+      { title: "Un lugar en silencio", image: "../img/un_lugar_en_silencio.png" },
+      { title: "Siniestro", image: "../img/siniestro.png" }
   ];
 
-  const allMovies = [];
+  const categoria2 = [
+      { title: "Los mundos de coraline", image: "../img/los_mundos_de_coraline.png" },
+      { title: "Elementos", image: "../img/elementos.png" },
+      { title: "Mi amigo Dahmer", image: "../img/mi_amigo_dahmer.png" }
+  ];
 
-  try {
-    for (const title of popularMoviesTitles) {
-      let apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=${title}`;
-      let response = await fetch(apiUrl);
+  function renderMovies(movieList, containerId) {
+      const container = document.getElementById(containerId);
+      movieList.forEach(movie => {
+          const movieItem = document.createElement('div');
+          movieItem.classList.add('movie-item');
+          
+          const movieImage = document.createElement('img');
+          movieImage.src = movie.image;
+          movieImage.alt = movie.title;
 
-      if (!response.ok) {
-        throw new Error(`ERROR EN EL CONSUMO DE LA API: ${response.status}`);
-      }
+          const movieInfo = document.createElement('div');
+          movieInfo.textContent = movie.title;
 
-      let data = await response.json();
-      
-      if (data.Response === 'True') {
-        // Agregar solo el primer resultado de data.Search
-        if (data.Search.length > 0) {
-          allMovies.push(data.Search[0]);
-        } else {
-          console.error(`No se encontraron películas para "${title}"`);
-        }
-      } else {
-        console.error(`No se encontraron películas para "${title}"`);
-      }
-    }
-
-    mostrarPeliculas(allMovies); // Llamar a mostrarPeliculas después de completar el bucle
-
-  } catch (error) {
-    console.error('ERROR:', error);
+          movieItem.appendChild(movieImage);
+          movieItem.appendChild(movieInfo);
+          container.appendChild(movieItem);
+      });
   }
-};
 
-const mostrarPeliculas = (peliculas) => {
-  const contenedorPeliculas = document.querySelector('.contenedorPeliculas');
-  contenedorPeliculas.innerHTML = '';
+  renderMovies(categoria1, 'categoria-1');
+  renderMovies(categoria2, 'categoria-2');
 
-  peliculas.forEach(pelicula => {
-    const peliculaElement = document.createElement('div');
-    peliculaElement.className = 'pelicula';
-    peliculaElement.innerHTML = `
-    <h3>${pelicula.Title}</h3>
-      <img src="${pelicula.Poster}" alt="${pelicula.Title}">
-    `;
-    contenedorPeliculas.appendChild(peliculaElement);
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.querySelector('.search-bar button');
+
+  searchButton.addEventListener('click', () => {
+      const query = searchInput.value.toLowerCase();
+      const allMovies = [...categoria1, ...categoria2];
+      const filteredMovies = allMovies.filter(movie => movie.title.toLowerCase().includes(query));
+
+      document.getElementById('categoria-1').innerHTML = '';
+      document.getElementById('categoria-2').innerHTML = '';
+
+      renderMovies(filteredMovies, 'categoria-1');
   });
-};
-
-getMovies();
+});

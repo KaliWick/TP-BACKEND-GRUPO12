@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="../css/estilos.css">
-    <title>CODEFLIX</title>
+    <title>Netflix</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="" alt="logo">
+	<header>
+		<div class="contenedor">
+			<div class="logotipo">
+                <img src="../img/icon.png" alt="">
             </div>
-            <div class="cuerpo">
-                <ul class="nav-links">
-                    <li><a href="iniciarSesion.html">Iniciar Sesión</a></li>
-                    <li><a href="registro.html">Registrarse</a></li>
-                    <li><a href="#peliculas">Nuestras Peliculas</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+			<nav>
+				<a href="#">Inicio</a>
+				<a href="#">Categorias</a>
+				<a href="#">Registrarse</a>
+			</nav>
+		</div>
+	</header>
     <main>
-        <section class="principal">
-            <img src="https://github.com/giselemilagros88/proyecto_movies_cac/blob/master/assets/img/banner-bg.jpg?raw=true" alt="principal">
+        <section class="buscador">
+            <input type="text" id="buscador-input" placeholder="Buscador de películas...">
+            <button>Buscar</button>
         </section>
-
-        <section id="Peliculas">
-            <h2>Catalogo de Películas</h2>
-            <div class="contenedorPeliculas">
-
-
+        <section class="peliculas">
+            <h2>Categoría 1</h2>
+            <div class="categoria" id="categoria-1">
+            </div>
+            <h2>Categoría 2</h2>
+            <div class="categoria" id="categoria-2">
             </div>
         </section>
-
     </main>
-    <footer>
-
-    </footer>
-    <script src="../js/scrypt.js"></script>
+   <footer>
+        <div class="derechos-footer">
+            <p class="derechos">&copy; Año 2024 | Todos los derechos reservados</p>
+        </div>
+   </footer>
+	<script src="../js/scrypt.js"></script>
 </body>
 </html>
