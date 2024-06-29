@@ -1,49 +1,116 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const categoria1 = [
-      { title: "Intensamente", image: "../img/intensamente.png" },
-      { title: "Un lugar en silencio", image: "../img/un_lugar_en_silencio.png" },
-      { title: "Siniestro", image: "../img/siniestro.png" }
+//CODIGO NUEVO
+const apiKey = '27a1abbc';
+
+let getMovies = async () => {
+  const popularMoviesTitles = [
+    'Avengers Endgame',
+    'Inside out 2',
+    'Joker',
+    'The Dark Knight',
+    'Flash',
+    'VENOM',
+    'Bad boys: ride or die',
+    'Kung fu panda 4',
+    'Dune',
+    'Fight Club',
+    'Guardians of the Galaxy Vol. 3',
+    'Interstellar',
+    'Avatar',
+    'when evil lurks',
+    'Minions',
+    'Back to the Future',
+    '¡Shazam!',
+    'Justice League',
+    'Drive',
+    'Barbie',
+    'megamind',
+    'Frozen',
+    'logan',
+    'Suicide squad',
+    'the super mario bros movie',
+    'fast X',
+    'Toy Story',
+    'Madame web',
+    'Madagascar',
+    'Deadpool',
+    'Blade Runner 2049',
+    'The Fast and the Furious',
+    'Iron man 2',
+    'Mad Max',
+    'Bad boys for life',
+    'captain marvel',
+    'Godzilla Minus One',
+    'Haikyu',
+    'coco'
   ];
+  
+  const moviesByGenre = {};
 
-  const categoria2 = [
-      { title: "Los mundos de coraline", image: "../img/los_mundos_de_coraline.png" },
-      { title: "Elementos", image: "../img/elementos.png" },
-      { title: "Mi amigo Dahmer", image: "../img/mi_amigo_dahmer.png" }
-  ];
+  try {
+    for (const title of popularMoviesTitles) {
+      let apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=${title}`;
+      let response = await fetch(apiUrl);
 
-  function renderMovies(movieList, containerId) {
-      const container = document.getElementById(containerId);
-      movieList.forEach(movie => {
-          const movieItem = document.createElement('div');
-          movieItem.classList.add('movie-item');
-          
-          const movieImage = document.createElement('img');
-          movieImage.src = movie.image;
-          movieImage.alt = movie.title;
+      if (!response.ok) {
+        throw new Error(`ERROR EN EL CONSUMO DE LA API: ${response.status}`);
+      }
 
-          const movieInfo = document.createElement('div');
-          movieInfo.textContent = movie.title;
+      let data = await response.json();
 
-          movieItem.appendChild(movieImage);
-          movieItem.appendChild(movieInfo);
-          container.appendChild(movieItem);
-      });
+      if (data.Response === 'True') {
+        let movie = data.Search[0];
+        let detailsUrl = `https://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`;
+        let detailsResponse = await fetch(detailsUrl);
+        let detailsData = await detailsResponse.json();
+
+        if (detailsData.Response === 'True') {
+          let genres = detailsData.Genre.split(', ');
+          genres.forEach(genre => {
+            if (!moviesByGenre[genre]) {
+              moviesByGenre[genre] = [];
+            }
+            moviesByGenre[genre].push(detailsData);
+          });
+        }
+      } else {
+        console.error(`No se encontraron películas para "${title}"`);
+      }
+    }
+
+    mostrarPeliculas(moviesByGenre); // Llamar a mostrarPeliculas después de completar el bucle
+
+  } catch (error) {
+    console.error('ERROR:', error);
   }
+};
 
-  renderMovies(categoria1, 'categoria-1');
-  renderMovies(categoria2, 'categoria-2');
+const mostrarPeliculas = (moviesByGenre) => {
+    const contenedorPeliculas = document.querySelector('.contenedorPeliculas');
+    contenedorPeliculas.innerHTML = '';
+  
+    for (const genre in moviesByGenre) {
+      const genreSection = document.createElement('div');
+      genreSection.className = 'genre-section';
+      genreSection.innerHTML = `<h3 id="genreTitle">${genre}</h3>`
 
-  const searchInput = document.getElementById('search-input');
-  const searchButton = document.querySelector('.search-bar button');
+      const genreContainer = document.createElement('div');
+      genreContainer.className = 'genre-container';
+  
+      moviesByGenre[genre].forEach(pelicula => {
+        const peliculaElement = document.createElement('div');
+        peliculaElement.className = 'pelicula';
+        peliculaElement.innerHTML = `
+          <h3>${pelicula.Title}</h3>
+          <img src="${pelicula.Poster}" alt="${pelicula.Title}">
+        `;
+        genreContainer.appendChild(peliculaElement);
+      });
+  
+      genreSection.appendChild(genreContainer);
+      contenedorPeliculas.appendChild(genreSection);
+    }
+  };
+  
+  getMovies();
 
-  searchButton.addEventListener('click', () => {
-      const query = searchInput.value.toLowerCase();
-      const allMovies = [...categoria1, ...categoria2];
-      const filteredMovies = allMovies.filter(movie => movie.title.toLowerCase().includes(query));
 
-      document.getElementById('categoria-1').innerHTML = '';
-      document.getElementById('categoria-2').innerHTML = '';
-
-      renderMovies(filteredMovies, 'categoria-1');
-  });
-});

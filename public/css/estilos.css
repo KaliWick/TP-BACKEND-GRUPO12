@@ -1,106 +1,28 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+*{
+    margin: 0;
+    padding: 0;
 }
-
-body {
-	background: rgb(22, 22, 22);
-	font-family: 'Open Sans', sans-serif;
-}
-
-.contenedor {
-	width: 95%;
-	margin: auto;
-    
-}
-
-header {
-	padding: 3em;
-}
-
-.contenedor {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.logotipo {
-    width: 5em;
-    height: 5em;
-}
-
-header nav a {
-	color: #AAA;
-	text-decoration: none;
-	margin-right: 1em;
-}
-
-header nav a:hover,
-header nav a.activo {
-	color: #FFF;
-}
-
-.buscador {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    background-color: #000000;
-    margin-top: 1rem;
-}
-
-.buscador input {
-    width: 30em;
-    height: 3em;
-    padding: 0.5rem;
-    margin-right: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 1.5em;
-}
-
-.buscador button {
-    padding: 0.5rem 1rem;
-    background-color: #fff;
-    border: none;
-    border-radius: 1.5em;
-    cursor: pointer;
-}
-h2{
-    color: #AAA;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 3;
-    display: flex;
+.genre-section
+{
     text-align: center;
-    font-weight: bold;
+    padding-bottom: 3em;
 }
-.peliculas{
-    padding: 2rem;
-
+#genreTitle
+{
+    padding: 1em;
 }
-.peliculas img
+.genre-container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+}
+.pelicula
+{
+    text-align: center;
+}
+.pelicula img
 {
     width: 14em;
     height: 20em;
 }
-.peliculas h2 {
-    margin-top: 0;
-}
-
-.categoria {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: 100%;
-    justify-content: space-around;
-    text-align: center;
-}
-
-.derechos-footer{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-size: 1.5em;
-}
-
-
