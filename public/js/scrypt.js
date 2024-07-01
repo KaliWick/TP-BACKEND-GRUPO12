@@ -44,40 +44,47 @@ let getMovies = async () => {
     'coco'
   ];
   
+  const allMovies = [];
   const moviesByGenre = {};
 
   try {
-    for (const title of popularMoviesTitles) {
+    // Crea un vector de promesas
+    const searchPromises = popularMoviesTitles.map(title => {
       let apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=${title}`;
-      let response = await fetch(apiUrl);
+      return fetch(apiUrl).then(response => response.json());
+    });
 
-      if (!response.ok) {
-        throw new Error(`ERROR EN EL CONSUMO DE LA API: ${response.status}`);
-      }
 
-      let data = await response.json();
+    const searchResults = await Promise.all(searchPromises);
 
-      if (data.Response === 'True') {
-        let movie = data.Search[0];
+    // Crea un vector de promesas para obtener los detalles de las peliculas
+    const detailsPromises = searchResults.map(data => {
+      if (data.Response === 'True' && data.Search.length > 0) {
+        let movie = data.Search[0]; //selecciona el primer elemento del vector (la primer pelicula que aparece con ese titulo)
         let detailsUrl = `https://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`;
-        let detailsResponse = await fetch(detailsUrl);
-        let detailsData = await detailsResponse.json();
-
-        if (detailsData.Response === 'True') {
-          let genres = detailsData.Genre.split(', ');
-          genres.forEach(genre => {
-            if (!moviesByGenre[genre]) {
-              moviesByGenre[genre] = [];
-            }
-            moviesByGenre[genre].push(detailsData);
-          });
-        }
+        return fetch(detailsUrl).then(response => response.json());
       } else {
-        console.error(`No se encontraron películas para "${title}"`);
+        return Promise.resolve(null);
       }
-    }
+    });
 
-    mostrarPeliculas(moviesByGenre); // Llamar a mostrarPeliculas después de completar el bucle
+    // Esperar a que todas las solicitudes de detalles se completen
+    const detailsResults = await Promise.all(detailsPromises);
+
+    // Procesar los resultados de los detalles
+    detailsResults.forEach(detailsData => {
+      if (detailsData && detailsData.Response === 'True') {
+        let genres = detailsData.Genre.split(', ');
+        genres.forEach(genre => {
+          if (!moviesByGenre[genre]) {
+            moviesByGenre[genre] = [];
+          }
+          moviesByGenre[genre].push(detailsData);
+        });
+      }
+    });
+
+    mostrarPeliculas(moviesByGenre); // Llamar a mostrarPeliculas después de completar el procesamiento
 
   } catch (error) {
     console.error('ERROR:', error);
@@ -100,7 +107,7 @@ const mostrarPeliculas = (moviesByGenre) => {
         const peliculaElement = document.createElement('div');
         peliculaElement.className = 'pelicula';
         peliculaElement.innerHTML = `
-          <h3>${pelicula.Title}</h3>
+          <h3 class="pelicula-title">${pelicula.Title}</h3>
           <img src="${pelicula.Poster}" alt="${pelicula.Title}">
         `;
         genreContainer.appendChild(peliculaElement);
