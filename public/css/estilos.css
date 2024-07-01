@@ -19,7 +19,7 @@
     --font-secondary: Arial, Helvetica, sans-serif;
     /* ---FONDO--- */
     /* bg colors */
-    --primary-bg-color: #000000;
+    --primary-bg-color: #080808;
     --header-bg-color: rgb(22, 22, 22);
     --nav-bg-color: #AAA ;
 
@@ -28,7 +28,7 @@
 
 /* ---BODY--- */
 body {
-    background-color: var(--header-bg-color);
+    background-color: var(--primary-bg-color);
     font-family: var(--font-primary);
 }
 
@@ -103,12 +103,10 @@ header nav a.activo {
 {
     text-align: center;
     font-size: var(--fontsize-grande);
-}
-h2{
-    font-family: var(--font-secondary);
     color: var(--color-primary-gris);
 }
-h3{
+
+#genreTitle{
     font-family: var(--font-secondary);
     color: var(--color-primary-gris);
 }
@@ -153,9 +151,7 @@ h3{
 .genre-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 15px;
 }
-
 
 .pelicula-title
 {
@@ -164,9 +160,38 @@ h3{
 
 .pelicula {
     text-align: center;
+    position: relative;
+    display: inline-block;
+    padding: 1em;
 }
 
 .pelicula img {
+    display: block;
     width: 14em;
     height: 20em;
+    border-radius: .5em;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+.pelicula .detalles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: var(--fontsize-mediana);
+    opacity: 0;
+    color: white;
+    transition: opacity 0.3s ease-in-out;
+    padding: 1em;
+    border-radius: .5em;
+    width: 50%;
+}
+.contenedorIndividualPeliculas:hover img
+{
+    transform: scale(0.95);
+    filter:brightness(50%) blur(.2em);
+}
+.contenedorIndividualPeliculas:hover .detalles
+{
+    opacity: 1;
 }

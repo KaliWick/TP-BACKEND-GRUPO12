@@ -41,7 +41,9 @@ let getMovies = async () => {
     'captain marvel',
     'Godzilla Minus One',
     'Haikyu',
-    'coco'
+    'coco',
+    'iron man 2',
+    'heat'
   ];
   
   const allMovies = [];
@@ -107,8 +109,12 @@ const mostrarPeliculas = (moviesByGenre) => {
         const peliculaElement = document.createElement('div');
         peliculaElement.className = 'pelicula';
         peliculaElement.innerHTML = `
+        <div class="contenedorIndividualPeliculas">  
+        <img src="${pelicula.Poster}" alt="${pelicula.Title}">
+        <div class="detalles">
           <h3 class="pelicula-title">${pelicula.Title}</h3>
-          <img src="${pelicula.Poster}" alt="${pelicula.Title}">
+        </div>  
+        </div>  
         `;
         genreContainer.appendChild(peliculaElement);
       });
