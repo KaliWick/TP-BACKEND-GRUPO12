@@ -9,14 +9,15 @@
 </head>
 <body>
 	<header>
-		<div class="contenedor">
+		<div class="contenedorNav">
 			<div class="logotipo">
                 <img src="../img/icon.png" alt="">
             </div>
 			<nav class="nav">
-                <a href="#">Inicio</a>
-				<a href="#">Categorias</a>
-				<a href="#">Registrarse</a>
+                <a href="#Inicio">Inicio</a>
+				<a href="#Categorias">Categorias</a>
+                <a href="/html/inicioSesion.html">Iniciar Sesion</a>
+				<a href="/html/registro.html">Registrarse</a>
 			</nav>
             <section class="buscador">
                 <input type="text" id="buscador-input" placeholder="Buscador de películas...">
@@ -25,13 +26,13 @@
 		</div>
 	</header>
     <main>
-        <div class="principal">
+        <div class="principal"id="Inicio">
             <img src="https://github.com/giselemilagros88/proyecto_movies_cac/blob/master/assets/img/banner-bg.jpg?raw=true" alt="principal">
         </div>
         <section id="Peliculas">
             <br>
             <h2>Catalogo de Películas</h2>
-            <div class="contenedorPeliculas"></div>
+            <div class="contenedorPeliculas" id="Categorias"></div>
         </section>
     </main>
    <footer>

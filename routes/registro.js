@@ -1,7 +1,8 @@
 const express = require ('express');
 const router = express.Router();
-const indexController = require('../Controllers/indexHTMLController')
+const registroController = require('../Controllers/RegistroController');
 
 ///aca van todas las acciones de esta seccion GET POST PUT DELETE
-router.get('/', indexController.obtenerCategorias);
+router.post('/registro',registroController.crearUsuario);
+
 module.exports = router;

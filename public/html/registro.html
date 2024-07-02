@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/registro.css">
+    <title>Registrarse</title>
+</head>
+<body>
+    <form id="crearUsuarioForm" class="hidden" enctype="multipart/form-data">
+        <h2>Registrarse</h2>
+        <label for="nombre">Nombre: </label>
+        <input type="text" id="nombre" name="nombre" required placeholder="Escriba su nombre aqui...">
+
+        <label for="apellido">Apellido: </label>
+        <input type="text" id="apellido" name="apellido" required placeholder="Escriba su apellido aqui...">
+
+        <label for="mail">Email: </label>
+        <input type="text" id="email" name="email" required placeholder="Ejemplo@gmail.com">
+        
+        <label for="nombreUsuario">Nombre de usuario: </label>
+        <input type="text" id="nombreUsuario" name="nombreUsuario" required placeholder="Escriba su nombre de usuario aqui...">
+
+        <label for="contrasenia">Contraseña: </label>
+        <input type="text" id="contrasenia" name="contrasenia" required placeholder="Escriba su contraseña aqui...">
+
+        <label>Acepto que soy mayor de 18 años</label>
+        <input type="checkbox" id="mayorEdad" name="mayorEdad">
+
+        <label>Acepto terminos y condiciones</label>
+        <input type="checkbox" id="terminos" name="terminos">
+
+        <input type="submit" name="Registrarse" id="Registrarse" value="Registrarse">
+
+        <h3>Si ya tiene una cuenta <a href="inicioSesion.html">inicie sesion acá</a></h3>
+
+    </form>
+    <script src="../js/registro.js"></script>
+</body>
+</html>

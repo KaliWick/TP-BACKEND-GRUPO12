@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/inicioSesion.css">
+    <title>Iniciar Sesion</title>
+</head>
+<body>
+    <form id="crearUsuarioForm" class="hidden" enctype="multipart/form-data">
+        <h2>Iniciar Sesion</h2>
+        <label for="nombreUsuario">Nombre de Usuario: </label>
+        <input type="text" id="nombreUsuario" name="nombreUsuario" required placeholder="Ingrese su nombre de usuario aqui...">
+        <label for="contrasenia">Contraseña: </label>
+        <input type="text" id="contrasenia" name="contrasenia" required placeholder="Ingrese su contraseña aqui...">
+
+        <input type="submit" name="IniciarSesion" id="IniciarSesion" value="Iniciar Sesion">
+
+        <h3>Si no tiene una cuenta <a href="registro.html">registrese acá</a></h3>
+    </form>
+    <script src="../js/inicioSesion.js"></script>
+</body>
+</html>

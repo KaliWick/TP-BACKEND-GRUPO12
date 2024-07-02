@@ -34,12 +34,14 @@ body {
 
 /* ---HEADER--- */
 /*---logo---*/
-.contenedor {
+.contenedorNav {
+    z-index: 10;
     display: flex;
     padding: 1em;
-
+    background-color: var(--primary-bg-color);
+    position: fixed;
+    width: 100%;
 }
-
 .logotipo {
     width: 20%;
     text-align: center;
@@ -57,13 +59,11 @@ body {
     justify-content: space-evenly;
     font-weight: var(--weight-gruesa);
 }
-
 .nav a {
     padding-top: 3em;
     color: var(--nav-bg-color);
     text-decoration: none;
 }
-
 header nav a:hover,
 header nav a.activo {
     color: var(--nav-activo-color);
@@ -76,6 +76,7 @@ header nav a.activo {
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    padding-right: 3em;
     margin-top: 1rem;
 
 }
