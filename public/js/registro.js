@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     crearUsuarioForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (validateForm(e)) {
-            const formData = new formData(crearUsuarioForm);
+            const formData = new FormData(crearUsuarioForm);
             const data =
             {
                 nombre: formData.get('nombre'),
                 apellido: formData.get('apellido'),
                 email: formData.get('email'),
                 nombreUsuario: formData.get('nombreUsuario'),
-                contrasenia: formData.get('contraseña')
+                contrasenia: formData.get('contrasenia')
             };
             try {
-                const response = await fetch('/usuarios', {
+                const response = await fetch('/registro', {
                     method: 'POST',
                     headers:
                     {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!response.ok) {
                     throw new Error('Error en la solicitud')
                 }
-                const result = await response.json;
+                const result = await response.json();
 
                 alert(result.message);
                 crearUsuarioForm.reset();
@@ -45,7 +45,6 @@ function isValidEmail(email) {
 }
 
 function validateForm(event) {
-    event.preventDefault();
 
     //inputs
     let nombre = document.getElementById("nombre").value;
