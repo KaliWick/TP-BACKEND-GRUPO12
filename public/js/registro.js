@@ -1,36 +1,42 @@
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded', () => {
 
     const crearUsuarioForm = document.getElementById("crearUsuarioForm");
 
-    crearUsuarioForm.addEventListener('submit', async(e)=>{
+    crearUsuarioForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if(validateForm()){
-        const formData = new formData(crearUsuarioForm);
-        const data =
-        {
-            nombre: formData.get('nombre'),
-            apellido: formData.get('apellido'),
-            email: formData.get('email'),
-            nombreUsuario: formData.get('nombreUsuario'),
-            contrasenia: formData.get('contraseña')
-        }
-
-        const response = await fetch('/usuarios',{
-            method: 'POST',
-            headers:
+        if (validateForm(e)) {
+            const formData = new formData(crearUsuarioForm);
+            const data =
             {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        
-        const result = await response.json;
-        alert(result.message);
+                nombre: formData.get('nombre'),
+                apellido: formData.get('apellido'),
+                email: formData.get('email'),
+                nombreUsuario: formData.get('nombreUsuario'),
+                contrasenia: formData.get('contraseña')
+            };
+            try {
+                const response = await fetch('/usuarios', {
+                    method: 'POST',
+                    headers:
+                    {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
 
-        crearUsuarioForm.reset();
-    }
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud')
+                }
+                const result = await response.json;
+
+                alert(result.message);
+                crearUsuarioForm.reset();
+            } catch (error) {
+                console.log('Error:', error);
+                alert('Hubo un error al crear el usuario');
+            }
+        }
     });
-
 });
 
 function isValidEmail(email) {
@@ -87,7 +93,7 @@ function validateForm(event) {
 
     if (!isValidEmail(email)) {
         alert("Por favor ingrese un MAIL VALIDO");
-        return true;
+        return false;
     }
+    return true;
 }
-document.getElementById("crearUsuarioForm").addEventListener("submit", validateForm);

@@ -24,6 +24,7 @@ const exp = require('constants');
 app.use('/html', express.static(path.join(__dirname,'..', 'public', 'html')));
 app.use('/css', express.static(path.join(__dirname,'..', 'public', 'css')));
 app.use('/js', express.static(path.join(__dirname,'..', 'public', 'js')));
+app.use('/img', express.static(path.join(__dirname,'..', 'public', 'img')));
 
 
 app.get('/', (req, res) => {
