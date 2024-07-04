@@ -177,20 +177,22 @@ main{
 .pelicula-title
 {
     font-size: var(--fontsize-chica);
+    margin: 0;
 }
 .pelicula {
-    text-align: center;
     position: relative;
     display: inline-block;
+    overflow: hidden;
     padding: 1.3em;
+ 
 }
 
 .pelicula img {
     display: block;
     max-width: 100%;
     max-height: 100%;
-    border-radius: .5em;
     transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    border-radius: .5em;
 }
 
 .pelicula .detalles{
@@ -199,14 +201,16 @@ main{
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: var(--fontsize-mediana);
+    text-align: center;
     opacity: 0;
-    color: white;
     transition: opacity 0.3s ease-in-out;
+    color: white;
 }
 .contenedorIndividualPeliculas
 {
     width: 14em;
     height: 20em;
+    position: relative;
 }
 .contenedorIndividualPeliculas:hover img
 {
