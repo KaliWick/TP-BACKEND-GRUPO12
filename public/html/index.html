@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/estilos.css">
     <title>CodeFlix</title>
 </head>
+
 <body>
-	<header>
-		<div class="contenedorNav">
-			<div class="logotipo">
-                <img src="/img/icon.png" alt="Imagen Icono">
+    <header>
+        <div class="contenedorNav">
+            <div class="contenedor-logo_links">
+                <div class="logotipo">
+                    <img src="/img/icon.png" alt="Imagen Icono">
+                </div>
+                <nav class="nav">
+                    <a href="#Inicio">Inicio</a>
+                    <a href="#Categorias">Categorias</a>
+                    <a href="/html/inicioSesion.html" class="link-oculto">Iniciar Sesion</a>
+                    <a href="/html/registro.html" class="link-oculto">Registrarse</a>
+                    <button id="perfilButton"><a href="/html/usuarios.html">Ver Perfil</a></button>
+                </nav>
             </div>
-			<nav class="nav">
-                <a href="#Inicio">Inicio</a>
-				<a href="#Categorias">Categorias</a>
-                <a href="/html/inicioSesion.html">Iniciar Sesion</a>
-				<a href="/html/registro.html">Registrarse</a>
-			</nav>
             <section class="buscador">
                 <input type="text" id="buscador-input" placeholder="Buscador de películas...">
                 <button>Buscar</button>
             </section>
-		</div>
-	</header>
+        </div>
+    </header>
     <main>
-        <div class="principal"id="Inicio">
-            <img src="https://github.com/giselemilagros88/proyecto_movies_cac/blob/master/assets/img/banner-bg.jpg?raw=true" alt="principal">
+        <div class="principal" id="Inicio">
+            <img src="https://github.com/giselemilagros88/proyecto_movies_cac/blob/master/assets/img/banner-bg.jpg?raw=true"
+                alt="principal">
         </div>
         <section id="Peliculas">
             <br>
@@ -35,11 +40,12 @@
             <div class="contenedorPeliculas" id="Categorias"></div>
         </section>
     </main>
-   <footer>
+    <footer>
         <div class="derechos-footer">
             <p class="derechos">&copy; Año 2024 | Todos los derechos reservados</p>
         </div>
-   </footer>
-	<script src="../js/scrypt.js"></script>
+    </footer>
+    <script src="../js/scrypt.js"></script>
 </body>
+
 </html>

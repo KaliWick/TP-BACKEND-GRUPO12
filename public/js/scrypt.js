@@ -59,7 +59,7 @@ let getMovies = async () => {
     'iron man 2',
     'heat'
   ];
-  
+
   const allMovies = [];
   const moviesByGenre = {};
 
@@ -108,21 +108,21 @@ let getMovies = async () => {
 };
 
 const mostrarPeliculas = (moviesByGenre) => {
-    const contenedorPeliculas = document.querySelector('.contenedorPeliculas');
-    contenedorPeliculas.innerHTML = '';
-  
-    for (const genre in moviesByGenre) {
-      const genreSection = document.createElement('div');
-      genreSection.className = 'genre-section';
-      genreSection.innerHTML = `<h3 id="genreTitle">${genre}</h3>`
+  const contenedorPeliculas = document.querySelector('.contenedorPeliculas');
+  contenedorPeliculas.innerHTML = '';
 
-      const genreContainer = document.createElement('div');
-      genreContainer.className = 'genre-container';
-  
-      moviesByGenre[genre].forEach(pelicula => {
-        const peliculaElement = document.createElement('div');
-        peliculaElement.className = 'pelicula';
-        peliculaElement.innerHTML = `
+  for (const genre in moviesByGenre) {
+    const genreSection = document.createElement('div');
+    genreSection.className = 'genre-section';
+    genreSection.innerHTML = `<h3 id="genreTitle">${genre}</h3>`
+
+    const genreContainer = document.createElement('div');
+    genreContainer.className = 'genre-container';
+
+    moviesByGenre[genre].forEach(pelicula => {
+      const peliculaElement = document.createElement('div');
+      peliculaElement.className = 'pelicula';
+      peliculaElement.innerHTML = `
         <div class="contenedorIndividualPeliculas">  
         <img src="${pelicula.Poster}" alt="${pelicula.Title}">
         <div class="detalles">
@@ -130,14 +130,48 @@ const mostrarPeliculas = (moviesByGenre) => {
         </div>  
         </div>  
         `;
-        genreContainer.appendChild(peliculaElement);
-      });
-  
-      genreSection.appendChild(genreContainer);
-      contenedorPeliculas.appendChild(genreSection);
+      genreContainer.appendChild(peliculaElement);
+    });
+
+    genreSection.appendChild(genreContainer);
+    contenedorPeliculas.appendChild(genreSection);
+  }
+};
+
+getMovies();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const perfilButton = document.getElementById('perfilButton');
+
+  perfilButton.addEventListener('click', async () => {
+    try {
+      const response = await fetch('/usuarios/datos');
+      if (response.ok) {
+        window.location.href = '/html/usuarios.html';
+      } else {
+        throw new Error('No autenticado');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      window.location.href = '/html/inicioSesion.html';
     }
-  };
-  
-  getMovies();
+  });
+
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const response = await fetch('/usuarios/datos');
+    if (response.ok) {
+    } else {
+      document.querySelectorAll(".link-oculto").forEach(link=>{
+        link.classList.remove("link-oculto");
+      })
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+
+});
 
 

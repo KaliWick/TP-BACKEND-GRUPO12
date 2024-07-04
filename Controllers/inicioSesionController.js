@@ -1,10 +1,30 @@
 const db = require ('../db/db');
 
-function obtenerCategorias(req, res) {
-    // Aquí irá la lógica para obtener las categorías de la base de datos
-    // Por ahora, retornamos un mensaje simple
-    res.send('Función para obtener categorías (sin implementar)');
-}
+const iniciarSesion = (req, res) => {
+    const { email, password } = req.body;
+    const sql = 'SELECT * FROM usuarios WHERE email = ?';
+    
+    db.query(sql, [email], async (err, results) => {
+        if (err) throw err;
+
+        if (results.length > 0) {
+            const user = results[0];
+            if (user.contrasenia===password) {
+                req.session.user = {
+                    nombre: user.nombre,
+                    apellido: user.apellido,
+                    email: user.email,
+                };
+                res.json({ success: true, message: 'Inicio de sesión exitoso' });
+            } else {
+                res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
+            }
+        } else {
+            res.status(404).json({ success: false, message: 'Usuario no encontrado' });
+        }
+    });
+};
+
 module.exports = {
-    obtenerCategorias
+    iniciarSesion
 };

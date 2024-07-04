@@ -2,14 +2,18 @@
     margin: 0;
     padding: 0;
 }
+/* esconder scroll para cada navegador */
 
+::-webkit-scrollbar {
+    display: none; 
+}
 :root {
     /* ---LETRAS--- */
     /* weights */
     --weight-gruesa : 600;
     /* colors */
     --nav-activo-color : #FFF;
-    --color-primary-gris: #AAA;
+    --color-primary-gris: #d8d8d8;
     /* sizes */
     --fontsize-grande:3em;
     --fontsize-mediana:2em;
@@ -19,9 +23,13 @@
     --font-secondary: Arial, Helvetica, sans-serif;
     /* ---FONDO--- */
     /* bg colors */
-    --primary-bg-color: #080808;
+    --primary-bg-color: #15131d;
+    --secondary-bg-color:#111018;
+    --buscador-color:#252235;
     --header-bg-color: rgb(22, 22, 22);
     --nav-bg-color: #AAA ;
+    /* altura header */
+    --altura-header :10em;
 
 
 }
@@ -33,35 +41,46 @@ body {
 }
 
 /* ---HEADER--- */
-/*---logo---*/
+header{
+    position: relative;
+    height: var(--altura-header);
+}
 .contenedorNav {
     z-index: 10;
     display: flex;
-    padding: 1em;
+    flex-direction: column;
     background-color: var(--primary-bg-color);
     position: fixed;
     width: 100%;
+    height: var(--altura-header);
+}
+/*---logo---*/
+.contenedor-logo_links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45em;
 }
 .logotipo {
-    width: 20%;
+    width: 30%;
     text-align: center;
+    flex: 1; 
 }
 .logotipo img
 {
-    padding-top: 0.85em;
+    padding-left: 1em;
 }
 
 /*---nav---*/
 .nav{
     display: flex;
     width: 100%;
-    margin-right: 15em;
-    justify-content: space-evenly;
+    justify-content: space-around;
     font-weight: var(--weight-gruesa);
 }
 .nav a {
-    padding-top: 3em;
-    color: var(--nav-bg-color);
+    color: var(--color-primary-gris);
     text-decoration: none;
 }
 header nav a:hover,
@@ -75,15 +94,14 @@ header nav a.activo {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    padding-right: 3em;
-    margin-top: 1rem;
-
+    background-color: var(--buscador-color);
+    margin-top: auto;
+    padding: 1em;
 }
 
 .buscador input {
     width: 30em;
-    height: 2em;
+    height: 1.3em;
     padding: 0.5rem;
     margin-right: 0.5rem;
     border: 1px solid #ccc;
@@ -99,7 +117,9 @@ header nav a.activo {
 }
 
 /*MAIN*/
-
+main{
+    background-color: var(--secondary-bg-color);
+}
 #Peliculas h2
 {
     text-align: center;
@@ -195,4 +215,8 @@ header nav a.activo {
 .contenedorIndividualPeliculas:hover .detalles
 {
     opacity: 1;
+}
+.link-oculto
+{
+    display: none;
 }
