@@ -7,17 +7,18 @@
     <title>Iniciar Sesion</title>
 </head>
 <body>
-    <form id="inicioSesionForm" class="hidden" enctype="multipart/form-data" method="post" action="/inicioSesion">
-        <h2>Iniciar Sesion</h2>
-        <label for="email">Email: </label>
-        <input type="email" id="email" name="email" required autocomplete="email" placeholder="Ingrese su email aqui...">
-        <label for="contrasenia">Contraseña: </label>
-        <input type="password" id="contrasenia" name="contrasenia" required placeholder="Ingrese su contraseña aqui...">
+<div class="form">
+    <form id="inicioSesionForm" class="formulario" enctype="multipart/form-data" method="post" action="/inicioSesion">
+        <h1>Iniciar Sesion</h1>
+        <input type="email" id="email" class="rellenar" name="email" required autocomplete="email" placeholder="Ingrese su email aqui...">
+        <input type="password" id="contrasenia" class="rellenar" name="contrasenia" required placeholder="Ingrese su contraseña aqui...">
 
-        <input type="submit" name="IniciarSesion" id="IniciarSesion" value="Iniciar Sesion">
+        <input type="submit" name="IniciarSesion" id="IniciarSesion" class="Boton" value="Iniciar Sesion">
 
         <h3>Si no tiene una cuenta <a href="registro.html">registrese acá</a></h3>
     </form>
+</div>
     <script src="../js/inicioSesion.js"></script>
 </body>
 </html>
+ 

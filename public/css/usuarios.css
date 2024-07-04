@@ -1,0 +1,65 @@
+:root {
+    /* fuentes */
+    --font-primary:'Open Sans', sans-serif;
+    --font-secondary: Arial, Helvetica, sans-serif;
+    --font-color: #E4E4E4;
+    /* bg colors */
+    --primary-bg-color: #15131d;
+    --secondary-bg-color:#111018;
+    --buscador-color:#252235;
+    --header-bg-color: rgb(22, 22, 22);
+    --link-color: #6b2c92;
+}
+body
+{
+    font-family: var(--font-primary);
+    color: var(--font-color);
+    background-color: var(--secondary-bg-color);
+}
+h1
+{
+    text-align: center;
+}
+.contenido-usuario {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    margin-left: 7em;
+    gap: 1em;
+    font-size: 1.2rem;
+   
+}
+
+.image-perfil {
+    grid-row: 1;
+    width: auto; 
+    border: 2px solid var(--buscador-color);
+    background-color: var(--primary-bg-color);
+    border-radius: 1em;
+}
+
+.image-perfil img {
+    padding: 1em;
+    max-width: 12em;
+    height: auto;
+}
+.contenedor-info
+{
+    grid-row: 1; 
+    grid-column: 2;
+    padding-left: 3em;
+    border: 2px solid var(--buscador-color);
+    background-color: var(--primary-bg-color);
+    max-width: 36em;
+    border-radius: 1em;
+    align-content: center;
+}
+.comentarios-usuarios
+{
+    grid-row: 2;
+    grid-column: 1 / span 2; 
+    border: 2px solid var(--buscador-color);
+    background-color: var(--primary-bg-color);
+    max-width: 54em;
+    border-radius: 1em;
+}

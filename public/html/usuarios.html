@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/usuarios.css">
     <title>Document</title>
 </head>
+
 <body>
-        <h1>Perfil de Usuario</h1>
-        <div id="usuarioInfo">
+    <h1>Perfil de Usuario</h1>
+    <div class="contenido-usuario">
+        <div class="image-perfil">
+            <img src="../img/perfil.png" alt="imagen de usuario">
         </div>
-        <button id="logoutButton">Cerrar sesión</button>
-        <script src="../js/usuarios.js"></script>
+        <div class="contenedor-info">
+            <div id="usuarioInfo">
+            </div>
+            <form id="biografia-form">
+                <textarea id="biografia-input" placeholder="Escribe tu biografía..."></textarea>
+                <button type="submit">Actualizar biografía</button>
+                <button type="button" id="eliminar-biografia">Eliminar biografía</button>
+            </form>
+        </div>
+        <div class="comentarios-usuarios">
+            <h1>Comentarios del usuario</h1>
+        </div>
+    </div>
+    <button id="logoutButton">Cerrar sesión</button>
+    <script src="../js/usuarios.js"></script>
 
 </body>
+
 </html>

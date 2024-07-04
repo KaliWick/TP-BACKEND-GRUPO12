@@ -11,9 +11,12 @@ const iniciarSesion = (req, res) => {
             const user = results[0];
             if (user.contrasenia===password) {
                 req.session.user = {
+                    id: user.id,
                     nombre: user.nombre,
                     apellido: user.apellido,
                     email: user.email,
+                    nombreUsuario: user.nombreUsuario,
+                    biografia: user.biografia 
                 };
                 res.json({ success: true, message: 'Inicio de sesión exitoso' });
             } else {

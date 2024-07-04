@@ -1,0 +1,75 @@
+:root {
+    /* fuentes */
+    --font-primary:'Open Sans', sans-serif;
+    --font-secondary: Arial, Helvetica, sans-serif;
+    --font-color: #E4E4E4;
+    /* bg colors */
+    --primary-bg-color: #15131d;
+    --secondary-bg-color:#111018;
+    --buscador-color:#252235;
+    --header-bg-color: rgb(22, 22, 22);
+    --link-color: #6b2c92;
+}
+*{
+    margin: 0;
+    font-family: var(--font-primary);
+    background-color: var(--secondary-bg-color);
+    color: var(--font-color);
+}
+.form{
+    width: 40%;
+    margin: 10% auto;
+    border-radius: 1em;
+    border: 2px solid var(--buscador-color);
+    background-color: var(--primary-bg-color);
+    outline: none;
+    color:rgb(255, 255, 255);
+}
+.formulario{
+    font-size: 1.2rem;
+    margin: 1em 0;
+    background-color: var(--primary-bg-color);
+} 
+h1{
+    margin: 5% 0 5% 26%;
+    background-color: var(--primary-bg-color);
+} 
+h3{
+    text-align: center;
+    background-color: var(--primary-bg-color);
+}
+a{
+    text-decoration: none;
+    color: var(--link-color);
+    background-color: var(--primary-bg-color);
+}
+.rellenar{
+    display: block;
+    margin: 5% auto;
+    width: 60%;
+    margin-top: 2%;
+    height: 2em;
+    padding: 0 1em;
+    font-size: 1.2rem;
+    border-radius: 1em;
+    border: 2px solid var(--buscador-color);
+    background-color: var(--primary-bg-color);
+    outline: none;
+    color:rgb(255, 255, 255);
+}
+.Boton{
+    width: 85%;
+    box-sizing: content-box;
+    background-color: var(--buscador-color);
+    border: 2px solid var(--buscador-color);
+    color: #ffffff;
+    padding: 1rem 1rem;
+    border-radius: 1em;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 5% 5%;
+}
+.Boton:hover
+{
+    background-color: #413e52;
+}
