@@ -29,8 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 const result = await response.json();
 
-                alert(result.message);
+                alert("¡Usuario registrado con exito!");
                 crearUsuarioForm.reset();
+                window.location.href = '/';
             } catch (error) {
                 console.log('Error:', error);
                 alert('Hubo un error al crear el usuario');

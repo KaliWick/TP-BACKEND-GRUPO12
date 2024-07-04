@@ -124,10 +124,10 @@ const mostrarPeliculas = (moviesByGenre) => {
       peliculaElement.className = 'pelicula';
       peliculaElement.innerHTML = `
         <div class="contenedorIndividualPeliculas">  
-        <img src="${pelicula.Poster}" alt="${pelicula.Title}">
-        <div class="detalles">
-          <h3 class="pelicula-title">${pelicula.Title}</h3>
-        </div>  
+          <img src="${pelicula.Poster}" alt="${pelicula.Title}">
+          <div class="detalles">
+            <h3 class="pelicula-title">${pelicula.Title}</h3>
+          </div>  
         </div>  
         `;
       genreContainer.appendChild(peliculaElement);
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('/usuarios/datos');
     if (response.ok) {
     } else {
-      document.querySelectorAll(".link-oculto").forEach(link=>{
+      document.querySelectorAll(".link-oculto").forEach(link => {
         link.classList.remove("link-oculto");
       })
     }
