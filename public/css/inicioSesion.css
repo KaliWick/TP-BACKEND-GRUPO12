@@ -68,6 +68,7 @@ a{
     font-size: 1rem;
     font-weight: 500;
     margin: 0 0 5% 5%;
+    cursor: pointer;
 }
 .Boton:hover
 {

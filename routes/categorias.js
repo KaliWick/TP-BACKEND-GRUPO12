@@ -1,7 +1,8 @@
 const express = require ('express');
 const router = express.Router();
-const peliculasController = require('../Controllers/peliculasController');
+const categoriasController = require('../Controllers/categoriasController')
 
 ///aca van todas las acciones de esta seccion GET POST PUT DELETE
-router.post('/', peliculasController.guardarPeliculasDB);
+router.post('/', categoriasController.guardarCategoriasDB);
+
 module.exports = router;

@@ -1,3 +1,4 @@
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -62,6 +63,7 @@ let getMovies = async () => {
 
   const allMovies = [];
   const moviesByGenre = {};
+  const genres = new Set();
 
   try {
     // Crea un vector de promesas
@@ -90,8 +92,9 @@ let getMovies = async () => {
     // Procesar los resultados de los detalles
     detailsResults.forEach(detailsData => {
       if (detailsData && detailsData.Response === 'True') {
-        let genres = detailsData.Genre.split(', ');
-        genres.forEach(genre => {
+        let genresArray = detailsData.Genre.split(', ');
+        genresArray.forEach(genre => {
+          genres.add(genre);
           if (!moviesByGenre[genre]) {
             moviesByGenre[genre] = [];
           }
@@ -99,6 +102,37 @@ let getMovies = async () => {
         });
       }
     });
+
+    const response = await fetch('http://localhost:3000/categorias', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ genres: Array.from(genres) })
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      console.log('Categorías guardadas correctamente');
+    } else {
+      console.error('Error al guardar categorías:', result.message);
+    }
+
+    // Guardar películas en la base de datos
+    const peliculasResponse = await fetch('http://localhost:3000/peliculas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ peliculas: allMovies })
+    });
+
+    const peliculasResult = await peliculasResponse.json();
+    if (peliculasResult.success) {
+      console.log('Películas guardadas correctamente');
+    } else {
+      console.error('Error al guardar películas:', peliculasResult.message);
+    }
 
     mostrarPeliculas(moviesByGenre); // Llamar a mostrarPeliculas después de completar el procesamiento
 

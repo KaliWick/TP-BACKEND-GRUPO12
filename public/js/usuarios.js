@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (response.ok) {
             const userData = await response.json();
             document.getElementById('usuarioInfo').innerHTML = `
-                <p>Nombre: ${userData.nombre}</p>
-                <p>Usuario: ${userData.nombreUsuario}<p>
-                <p>Email: ${userData.email}</p>
+                <p><span class="span-datos">Nombre:</span> ${userData.nombre}</p>
+                <p><span class="span-datos">Usuario:</span> ${userData.nombreUsuario}<p>
+                <p><span class="span-datos">Email:</span> ${userData.email}</p>
             `;
         } else {
             alert('Error al obtener los datos del usuario');
@@ -34,18 +34,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error:', error);
     }
-
-    document.getElementById('edit-button').addEventListener('click', () => {
-        document.getElementById('user-profile').style.display = 'none';
-        document.getElementById('edit-profile').style.display = 'block';
-    });
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        // Obtener datos del usuario al cargar la página
         const response = await fetch('/usuarios/datos');
         if (response.ok) {
             const userData = await response.json();
+            // Actualizar el valor del textarea con la biografía del usuario
             document.getElementById('biografia-input').value = userData.biografia || '';
         } else {
             console.error('No autenticado');
@@ -56,14 +53,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const biografiaForm = document.getElementById('biografia-form');
     const biografiaInput = document.getElementById('biografia-input');
-    const eliminarBiografiaButton = document.getElementById('eliminar-biografia');
 
     biografiaForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const biografia = biografiaInput.value;
         try {
             const response = await fetch('/usuarios/biografia', {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -72,28 +68,62 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (response.ok) {
                 alert('Biografía actualizada');
+                // Actualizar la biografía en la sesión del usuario
+                const userDataResponse = await fetch('/usuarios/datos');
+                if (userDataResponse.ok) {
+                    const userData = await userDataResponse.json();
+                    document.getElementById('biografia-input').value = userData.biografia || '';
+                } else {
+                    console.error('No se pudo cargar la biografía actualizada');
+                }
             } else {
                 alert('Error al actualizar la biografía');
             }
         } catch (error) {
             console.error('Error:', error);
+            alert('Error al actualizar la biografía');
         }
     });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const deleteBiografiaButton = document.getElementById('boton-eliminar-biografia');
 
-    eliminarBiografiaButton.addEventListener('click', async () => {
+    deleteBiografiaButton.addEventListener('click', async () => {
         try {
             const response = await fetch('/usuarios/biografia', {
-                method: 'DELETE'
+                method: 'DELETE',
             });
-
-            if (response.ok) {
-                biografiaInput.value = '';
-                alert('Biografía eliminada');
+            const result = await response.json();
+            if (response.ok && result.success) {
+                alert(result.message);
+                document.getElementById('biografia-input').value = '';
             } else {
                 alert('Error al eliminar la biografía');
             }
         } catch (error) {
             console.error('Error:', error);
+            alert('Error al eliminar la biografía');
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const deleteButton = document.getElementById('eliminarUsuario');
+    
+    deleteButton.addEventListener('click', async () => {
+        try {
+            const response = await fetch('/usuarios/delete', {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                alert("Usuario eliminado con exito");
+                window.location.href = '/html/index.html';
+            } else {
+                alert('Error al eliminar el usuario 1/2');
+            }
+        } catch (error) {
+            console.log('Error:', error);
+            alert('Error al eliminar el usuario 2/2');
         }
     });
 });

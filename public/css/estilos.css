@@ -87,6 +87,22 @@ header nav a:hover,
 header nav a.activo {
     color: var(--nav-activo-color);
 }
+#perfilButton {
+    background-color: transparent;
+    border: none; 
+    padding: 0; 
+}
+
+#perfilButton a {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Icons Outlined'; 
+    vertical-align: middle; 
+    color: white;
+}
 
 /*buscador*/
 .buscador {

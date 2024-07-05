@@ -81,7 +81,8 @@ a{
     border-radius: 1em;
     font-size: 1rem;
     font-weight: 500;
-    margin: 2% 0 5% 5%;         
+    margin: 2% 0 5% 5%;  
+    cursor: pointer;       
 }
 .Boton:hover
 {

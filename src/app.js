@@ -11,6 +11,7 @@ const inicioSesionRoutes = require('../routes/inicioSesion');
 const peliculasRoutes = require('../routes/peliculas');
 const registroRoutes = require('../routes/registro');
 const usuariosRoutes = require('../routes/usuarios');
+const categoriasRoutes = require('../routes/categorias');
 
 app.use(express.json());
 
@@ -27,6 +28,7 @@ app.use('/inicioSesion',inicioSesionRoutes);
 app.use('/peliculas',peliculasRoutes);
 app.use('/registro',registroRoutes);
 app.use('/usuarios',usuariosRoutes);
+app.use('/categorias',categoriasRoutes);
 
 const exp = require('constants');
 

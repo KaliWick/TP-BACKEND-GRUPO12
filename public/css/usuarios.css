@@ -32,7 +32,8 @@ h1
 
 .image-perfil {
     grid-row: 1;
-    width: auto; 
+    width: auto;  
+    max-height: 14em;
     border: 2px solid var(--buscador-color);
     background-color: var(--primary-bg-color);
     border-radius: 1em;
@@ -62,4 +63,87 @@ h1
     background-color: var(--primary-bg-color);
     max-width: 54em;
     border-radius: 1em;
+}
+.span-datos
+{
+    color: #46425f; ;
+}
+
+/* biografia */
+#biografia-input
+{
+    width: 70%;
+    max-width: 70%;
+    height: 10em;
+    max-height: 10em;
+    border-radius: .5em;
+    
+}
+#biografia{
+    font-size: 1.2rem;
+    color: #46425f; 
+    font-weight: 400;
+    margin-bottom: .8em;
+}
+#biografia-form
+{
+    display: flex;  
+}
+.boton-biografia
+{
+    box-sizing: content-box;
+    background-color: var(--buscador-color);
+    border: 2px solid var(--buscador-color);
+    color: #ffffff;
+    padding: .4em;
+    border-radius: 1em;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 6em;
+    cursor: pointer;
+    margin: .4em 0 .5em 2em;
+}
+#boton-biografia:hover
+{
+    background-color: #413e52;
+}
+.button-container {
+    display: flex;
+    flex-direction: column;
+}
+#logoutButton
+{
+    box-sizing: content-box;
+    background-color: var(--buscador-color);
+    border: 2px solid var(--buscador-color);
+    color: #ffffff;
+    padding: .4em;
+    border-radius: 1em;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 6em;
+    cursor: pointer;
+    margin: 2em 0 2em 0;
+}
+#logoutButton:hover
+{
+    background-color: #413e52;
+}
+#eliminarUsuario
+{
+    box-sizing: content-box;
+    background-color: rgb(110, 40, 40);
+    border: 2px solid rgb(99, 39, 39);
+    color: #ffffff;
+    padding: .4em;
+    border-radius: 1em;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 6em;
+    cursor: pointer;
+    margin: 2em 0 2em 1em;
+}
+#eliminarUsuario:hover
+{
+    background-color:rgba(185, 53, 53, 0.788) ;  
 }

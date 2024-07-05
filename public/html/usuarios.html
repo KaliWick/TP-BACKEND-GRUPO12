@@ -17,17 +17,21 @@
         <div class="contenedor-info">
             <div id="usuarioInfo">
             </div>
+            <h3 id="biografia">Biografia:</h3>
             <form id="biografia-form">
                 <textarea id="biografia-input" placeholder="Escribe tu biografía..."></textarea>
-                <button type="submit">Actualizar biografía</button>
-                <button type="button" id="eliminar-biografia">Eliminar biografía</button>
+                <div class="button-container">
+                <button type="submit" class="boton-biografia">Actualizar biografía</button>
+                <button type="button" class="boton-biografia" id="boton-eliminar-biografia">Eliminar biografía</button>
+                </div>
             </form>
+            <button id="logoutButton">Cerrar sesión</button>
+            <button id="eliminarUsuario">Eliminar Usuario</button>
         </div>
         <div class="comentarios-usuarios">
             <h1>Comentarios del usuario</h1>
         </div>
     </div>
-    <button id="logoutButton">Cerrar sesión</button>
     <script src="../js/usuarios.js"></script>
 
 </body>
