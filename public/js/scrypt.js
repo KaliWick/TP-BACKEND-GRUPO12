@@ -100,6 +100,14 @@ let getMovies = async () => {
           }
           moviesByGenre[genre].push(detailsData);
         });
+
+        allMovies.push({
+          titulo: detailsData.Title,
+          descripcion: detailsData.Plot,
+          genre: genresArray[0], // Solo la primera categoría para simplificar, ajusta según tu necesidad
+          imdbID: detailsData.imdbID
+        });
+
       }
     });
 
