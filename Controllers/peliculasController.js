@@ -23,7 +23,7 @@ const guardarPeliculasDB = async (req, res) => {
             });
 
             if (peliculaExistente) {
-                console.log(`Película ${titulo} ya existe en la base de datos, actualizando...`);
+                //console.log(`Película ${titulo} ya existe en la base de datos, actualizando...`);
                 // Actualizar película existente
                 const sqlActualizar = `
                     UPDATE peliculas 
@@ -36,7 +36,7 @@ const guardarPeliculasDB = async (req, res) => {
                             console.error('Error al actualizar película:', err);
                             return reject(err);
                         }
-                        console.log(`Película ${titulo} actualizada correctamente`);
+                        //console.log(`Película ${titulo} actualizada correctamente`);
                         resolve(result);
                     });
                 });

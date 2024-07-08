@@ -166,10 +166,12 @@ const mostrarPeliculas = (moviesByGenre) => {
       peliculaElement.className = 'pelicula';
       peliculaElement.innerHTML = `
         <div class="contenedorIndividualPeliculas">  
-          <img src="${pelicula.Poster}" alt="${pelicula.Title}">
-          <div class="detalles">
+           <a href="/html/peliculas.html?imdbID=${pelicula.imdbID}">
+            <img src="${pelicula.Poster}" alt="${pelicula.Title}">
+            <div class="detalles">
             <h3 class="pelicula-title">${pelicula.Title}</h3>
-          </div>  
+            </div>  
+            </a>
         </div>  
         `;
       genreContainer.appendChild(peliculaElement);
