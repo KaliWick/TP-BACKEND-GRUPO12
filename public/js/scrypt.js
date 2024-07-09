@@ -111,7 +111,7 @@ let getMovies = async () => {
       }
     });
 
-    const response = await fetch('http://localhost:3000/categorias', {
+    const response = await fetch('http://localhost:3000/categorias/guardar_categorias', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ let getMovies = async () => {
     }
 
     // Guardar películas en la base de datos
-    const peliculasResponse = await fetch('http://localhost:3000/peliculas', {
+    const peliculasResponse = await fetch('http://localhost:3000/peliculas/guardar_peliculas', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
