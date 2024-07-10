@@ -11,7 +11,7 @@ const guardarPeliculasDB = async (req, res) => {
             const { titulo, descripcion, genre, imdbID } = pelicula;
 
             // Verificar si la película ya existe en la base de datos por su imdbID
-            const sqlVerificar = 'SELECT id FROM peliculas WHERE imdbID = ?';
+            const sqlVerificar = 'SELECT imdbID FROM peliculas WHERE imdbID = ?';
             const [peliculaExistente] = await new Promise((resolve, reject) => {
                 db.query(sqlVerificar, [imdbID], (err, result) => {
                     if (err) {

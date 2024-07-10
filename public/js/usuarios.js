@@ -127,3 +127,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const comentariosResponse = await fetch('/usuarios/comentarios');
+        const comentariosData = await comentariosResponse.json();
+
+        if (comentariosData.comentarios) {
+            const comentariosContainer = document.getElementById('comentarios-container');
+            comentariosContainer.innerHTML = '';
+
+            comentariosData.comentarios.forEach(comentario => {
+                const comentarioElement = document.createElement('div');
+                comentarioElement.innerHTML = `
+                    <p><strong>${comentario.titulo_pelicula}</strong>: ${comentario.comentario} (${comentario.fecha_formateada})</p>
+                `;
+                comentariosContainer.appendChild(comentarioElement);
+            });
+        } else {
+            console.error('Error al obtener los comentarios del usuario:', comentariosData.error);
+        }
+    } catch (error) {
+        console.error('Error al recuperar los comentarios del usuario:', error);
+    }
+});

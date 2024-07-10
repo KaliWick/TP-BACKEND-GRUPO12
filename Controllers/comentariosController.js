@@ -31,7 +31,7 @@ const obtenerComentarios = async (req, res) => {
 const agregarComentarios = async (req, res) => {
     const { imdbID } = req.params;
     const { contenido } = req.body;
-    const usuarioId = req.session.userId; // Asegúrate de que la sesión contenga el userId del usuario autenticado
+    const usuarioId = req.session.user.id;
 
     if (!imdbID || !contenido || !usuarioId) {
         return res.status(400).json({ error: 'Datos incompletos' });

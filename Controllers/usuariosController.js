@@ -54,8 +54,38 @@ const eliminarUsuario = (req, res) => {
     });
 };
 
+const obtenerComentariosUsuario = async (req, res) => {
+    const usuarioId = req.session.user.id;// Obtén el ID del usuario desde la sesión (suponiendo que estás usando sesiones)
+    if (!usuarioId) {
+        return res.status(401).json({ error: 'Usuario no autenticado' });
+    }
+
+    try {
+        const sql = `
+            SELECT c.id AS comentario_id, c.contenido AS comentario, DATE_FORMAT(c.fecha, '%e %M %Y') AS fecha_formateada, p.titulo AS titulo_pelicula
+            FROM comentarios c
+            JOIN peliculas p ON c.imdbID = p.imdbID
+            WHERE c.usuario_id = ?
+            ORDER BY c.fecha DESC;
+        `;
+
+        db.query(sql, [usuarioId], (err, results) => {
+            if (err) {
+                console.error('Error al obtener comentarios del usuario:', err);
+                return res.status(500).json({ error: 'Error en el servidor' });
+            }
+
+            res.json({ comentarios: results });
+        });
+    } catch (error) {
+        console.error('Error en el controlador de comentarios de usuario:', error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+};
+
 module.exports = {
     actualizarBiografia,
     eliminarBiografia,
-    eliminarUsuario
+    eliminarUsuario,
+    obtenerComentariosUsuario
 };
