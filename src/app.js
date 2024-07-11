@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 const path = require('path');
 
+
 const comentariosRoutes = require('../routes/comentarios');
 const indexRoutes = require('../routes/index');
 const inicioSesionRoutes = require('../routes/inicioSesion');
@@ -67,3 +68,4 @@ app.post('/logout', (req, res) => {
     });
 });
 
+app.listen();
