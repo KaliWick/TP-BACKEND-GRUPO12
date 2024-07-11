@@ -44,9 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const userData = await response.json();
             // Actualizar el valor del textarea con la biografía del usuario
             document.getElementById('biografia-input').value = userData.biografia || '';
-        } else {
-            console.error('No autenticado');
-        }
+        } 
     } catch (error) {
         console.error('Error:', error);
     }
