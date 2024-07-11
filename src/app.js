@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const cors = require('cors');
 const app = express();
 const path = require('path');
 
@@ -14,6 +15,7 @@ const usuariosRoutes = require('../routes/usuarios');
 const categoriasRoutes = require('../routes/categorias');
 
 app.use(express.json());
+app.use(cors());
 
 app.use(session({
     secret: 'grupo12node', 
