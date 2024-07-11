@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/peliculas.css">
     <title>Peliculas</title>
 </head>
+
 <body>
-    <div class="detalle-pelicula">
-        <h1 id="titulo"></h1>
-        <img id="poster" src="" alt="">
-        <p id="descripcion"></p>
-        <p id="genero"></p>
-        <p id="año"></p>
-        <p id="duracion"></p>
-      </div>
-      <div id="comentarios">
-        <h2>Comentarios</h2>
-        <div id="listaComentarios"></div>
+    <div class="pelicula">
+        <div class="img">
+            <img id="poster" src="" alt="">
+        </div>
+        <div class="detalle-pelicula">
+            <h1 id="titulo"></h1>
+            <p id="descripcion"></p>
+            <p id="genero"></p>
+            <p id="año"></p>
+            <p id="duracion"></p>
+            <p id="director"></p>
+        </div>
     </div>
-    
-    <div>
-        <div id="comentarios-container">Comentarios</div>
+    <div id="comentarios">
+        <h2 id="comentarios-h2">Comentarios</h2>
+        <div id="listaComentarios"></div>
+
+        <div id="comentarios-container"></div>
 
         <div id="nuevoComentario">
-            <h2 id="dejar-comentario">Dejar un comentario</h2>
+            <h2 id="dejar-comentario"></h2>
             <form id="formComentario" class="form-oculto">
-                <textarea id="comentarioTexto" required></textarea>
-                <button type="submit">Enviar</button>
+                <div class="form-group">
+                    <textarea id="comentarioTexto" required></textarea>
+                    <button type="submit" id="enviar_comentario">Enviar comentario</button>
+                </div>
             </form>
         </div>
     </div>
-   <script src="../js/peliculas.js"></script> 
-   <script src="../js/comentarios.js"></script>
+
+    <script src="../js/peliculas.js"></script>
+    <script src="../js/comentarios.js"></script>
 </body>
+
 </html>

@@ -26,7 +26,3 @@ const guardarCategoriasDB = async (req, res) => {
 module.exports = {
     guardarCategoriasDB
 };
-
-module.exports = {
-    guardarCategoriasDB
-};

@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('genero').innerText = `Género: ${movie.Genre}`;
             document.getElementById('año').innerText = `Año: ${movie.Year}`;
             document.getElementById('duracion').innerText = `Duración: ${movie.Runtime}`;
+            document.getElementById('director').innerHTML = `Director: ${movie.Director}`;
         } else {
             console.error('Error al obtener los detalles de la película:', movie.Error);
         }
