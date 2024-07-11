@@ -14,7 +14,11 @@ const usuariosRoutes = require('../routes/usuarios');
 const categoriasRoutes = require('../routes/categorias');
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://tp-backend-grupo-12.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }));
 
 app.use(session({
     secret: 'grupo12node', 
