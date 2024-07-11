@@ -111,7 +111,7 @@ let getMovies = async () => {
       }
     });
 
-    const response = await fetch('https://tp-backend-grupo-12-53utgkch8-kaliwicks-projects.vercel.app/categorias/guardar_categorias', {
+    const response = await fetch('/categorias/guardar_categorias', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ let getMovies = async () => {
     }
 
     // Guardar películas en la base de datos
-    const peliculasResponse = await fetch('https://tp-backend-grupo-12-53utgkch8-kaliwicks-projects.vercel.app/peliculas/guardar_peliculas', {
+    const peliculasResponse = await fetch('/peliculas/guardar_peliculas', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
