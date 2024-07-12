@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 password: formData.get('contrasenia')
             };
 
-            console.log('Datos del formulario:', data); // Verifica que los datos se estén capturando correctamente
+            alert('Datos del formulario: ' + JSON.stringify(data)); // Muestra los datos del formulario
 
             try {
-                const response = await fetch('/inicioSesion/inicioSesion', {
+                const response = await fetch('/inicioSesion/iniciar_sesion', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -21,21 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(data)
                 });
 
-                console.log('Respuesta del servidor:', response); // Verifica la respuesta del servidor
-
                 if (!response.ok) {
                     throw new Error('Error en la solicitud');
                 }
 
                 const result = await response.json();
-                console.log('Resultado del inicio de sesión:', result); // Verifica el resultado del inicio de sesión
+                alert('Resultado del inicio de sesión: ' + JSON.stringify(result)); // Muestra el resultado del inicio de sesión
 
                 if (result.success) {
-                    console.log('Inicio de sesión exitoso, redirigiendo...'); // Verifica que se ejecuta la redirección
+                    alert('Inicio de sesión exitoso, redirigiendo...'); // Muestra mensaje de éxito
                     window.location.href = '/';
                 } else {
-                    console.log('Inicio de sesión fallido:', result.error); // Verifica si hay errores específicos del inicio de sesión
-                    alert('Inicio de sesión fallido. Verifica tus credenciales.');
+                    alert('Inicio de sesión fallido: ' + result.error); // Muestra mensaje de error
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -46,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function validateForm(event) {
-    // Validación básica del formulario
     let email = document.getElementById("email").value;
     let contrasenia = document.getElementById("contrasenia").value;
 
