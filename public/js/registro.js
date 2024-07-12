@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 contrasenia: formData.get('contrasenia')
             };
             try {
-                const response = await fetch('https://tp-backend-grupo-12.vercel.app/registro/crear_usuario', {
+                const response = await fetch('/registro/crear_usuario', {
                     method: 'POST',
                     headers:
                     {
