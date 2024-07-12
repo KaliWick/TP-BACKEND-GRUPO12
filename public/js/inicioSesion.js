@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         alert('Datos del formulario: ' + JSON.stringify(data));
         try {
-            const response = await fetch('/inicioSesion/iniciar_sesion', {
+            const response = await fetch('/inicioSesion/iniciarSesion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
