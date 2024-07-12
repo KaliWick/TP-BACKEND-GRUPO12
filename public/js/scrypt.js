@@ -191,13 +191,13 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const response = await fetch('/usuarios/datos');
       if (response.ok) {
-        window.location.href = '/html/usuarios.html';
+        window.location.href = '/usuarios.html';
       } else {
         throw new Error('No autenticado');
       }
     } catch (error) {
       console.error('Error:', error);
-      window.location.href = '/html/inicioSesion.html';
+      window.location.href = '/inicioSesion.html';
     }
   });
 
