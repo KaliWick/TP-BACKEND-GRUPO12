@@ -27,9 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Resultado del inicio de sesión:', result);
 
             if (result.success) {
+                
                 console.log('Inicio de sesión exitoso, redirigiendo...');
                 setTimeout(() => {
-                    window.location.href = '/';
+                    window.location.href = '/usuarios/datos';
                 }, 800); 
             }
         } catch (error) {
