@@ -1,4 +1,4 @@
-const db = require('../db/db');
+/*const db = require('../db/db');
 
 const actualizarBiografia = (req, res) => {
     const { biografia } = req.body;
@@ -80,6 +80,90 @@ const obtenerComentariosUsuario = async (req, res) => {
     } catch (error) {
         console.error('Error en el controlador de comentarios de usuario:', error);
         res.status(500).json({ error: 'Error en el servidor' });
+    }
+};
+
+module.exports = {
+    actualizarBiografia,
+    eliminarBiografia,
+    eliminarUsuario,
+    obtenerComentariosUsuario
+};
+*/
+const db = require('../db/db');
+
+const actualizarBiografia = (biografia) => {
+    const userId = sessionStorage.getItem('userId');
+
+    const sql = 'UPDATE usuarios SET biografia = ? WHERE id = ?';
+    db.query(sql, [biografia, userId], (err, result) => {
+        if (err) {
+            console.error('Error updating biography:', err);
+            return { success: false, message: 'Error updating biography' };
+        }
+
+        // Actualiza la biografía en sessionStorage
+        sessionStorage.setItem('biografia', biografia);
+        return { success: true, message: 'Biografía actualizada' };
+    });
+};
+
+const eliminarBiografia = () => {
+    const userId = sessionStorage.getItem('userId');
+
+    if (!userId) {
+        return { success: false, message: 'Usuario no autenticado' };
+    }
+
+    const sql = 'UPDATE usuarios SET biografia = NULL WHERE id = ?';
+    db.query(sql, [userId], (err, result) => {
+        if (err) {
+            console.error('Error deleting biography:', err);
+            return { success: false, message: 'Error deleting biography' };
+        }
+
+        // Elimina la biografía de sessionStorage
+        sessionStorage.removeItem('biografia');
+        return { success: true, message: 'Biografía eliminada' };
+    });
+};
+
+const eliminarUsuario = () => {
+    const userId = sessionStorage.getItem('userId');
+    const sql = 'DELETE FROM usuarios WHERE id = ?';
+    
+    db.query(sql, [userId], (err, result) => {
+        if (err) {
+            console.error('Error deleting user:', err);
+            return { success: false, message: 'Error deleting user' };
+        }
+
+        // Destruye la sesión en sessionStorage
+        sessionStorage.clear();
+        return { success: true, message: 'Usuario eliminado y sesión destruida' };
+    });
+};
+
+const obtenerComentariosUsuario = async () => {
+    const usuarioId = sessionStorage.getItem('userId');
+    if (!usuarioId) {
+        return { error: 'Usuario no autenticado' };
+    }
+
+    try {
+        const sql = `
+            SELECT c.id AS comentario_id, c.contenido AS comentario, DATE_FORMAT(c.fecha, '%e %M %Y') AS fecha_formateada, p.titulo AS titulo_pelicula
+            FROM comentarios c
+            JOIN peliculas p ON c.imdbID = p.imdbID
+            WHERE c.usuario_id = ?
+            ORDER BY c.fecha DESC;
+        `;
+
+        const results = await db.query(sql, [usuarioId]);
+        return { comentarios: results };
+    } catch (error) {
+        console.error('Error en el controlador de comentarios de usuario:', error);
+        return { error: 'Error en el servidor' };
     }
 };
 

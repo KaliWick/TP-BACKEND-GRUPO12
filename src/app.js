@@ -53,11 +53,21 @@ app.get('/', (req, res) => {
 });
 
 //ruta para usuarios
+/*
 app.get('/usuarios', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, '..', 'public', 'html', 'usuarios.html'));
     } else {
         res.redirect('/inicioSesion'); 
+    }
+});
+*/
+app.get('/usuarios', (req, res) => {
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
+        res.sendFile(path.join(__dirname, '..', 'public', 'html', 'usuarios.html'));
+    } else {
+        res.redirect('/inicioSesion');
     }
 });
 
@@ -71,7 +81,9 @@ app.get('/registro', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'html', 'registro.html'));
 });
 
+
 //ruta para mostrar los datos
+/*
 app.get('/usuarios/datos', (req, res) => {
     if (req.session.user) {
         res.json(req.session.user);
@@ -79,8 +91,25 @@ app.get('/usuarios/datos', (req, res) => {
         res.status(401).json({ message: 'No autenticado' });
     }
 });
-
+*/
+app.get('/usuarios/datos', (req, res) => {
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
+        const usuario = {
+            id: sessionStorage.getItem('userId'),
+            nombre: sessionStorage.getItem('nombre'),
+            apellido: sessionStorage.getItem('apellido'),
+            email: sessionStorage.getItem('email'),
+            nombreUsuario: sessionStorage.getItem('nombreUsuario'),
+            biografia: sessionStorage.getItem('biografia')
+        };
+        res.json(usuario);
+    } else {
+        res.status(401).json({ message: 'No autenticado' });
+    }
+});
 //ruta para cerrar la sesion
+/*
 app.post('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
@@ -88,6 +117,11 @@ app.post('/logout', (req, res) => {
         }
         res.redirect('/inicioSesion');
     });
+});
+*/
+app.post('/logout', (req, res) => {
+    sessionStorage.clear();
+    res.redirect('/inicioSesion');
 });
 
 
