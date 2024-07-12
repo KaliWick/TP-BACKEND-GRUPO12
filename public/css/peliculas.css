@@ -106,3 +106,24 @@ a{
     display: flex;
     align-items: center;
 }
+#Volver
+{
+    background-color: var(--buscador-color);
+    border: 2px solid var(--buscador-color);
+    color: #ffffff;
+    padding: 1rem 1rem;
+    border-radius: 1em;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+#Volver:hover
+{
+    background-color: #413e52;
+}
+
+#linkVolver
+{
+    text-align: center;
+    margin: 1em 0 1em -28em;
+}
