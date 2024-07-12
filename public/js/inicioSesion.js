@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Resultado del inicio de sesión: ' + JSON.stringify(result));
 
             if (result.success) {
-                alert('Inicio de sesión exitoso, redirigiendo...');
+                alert('Inicio de sesión exitoso JS, redirigiendo...');
                 // Esperar un breve momento antes de redirigir
                 setTimeout(() => {
                     window.location.href = '/';
-                }, 800); // 500ms de espera
+                }, 800);
             }
         } catch (error) {
             console.error('Error:', error);

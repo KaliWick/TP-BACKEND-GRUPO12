@@ -3,6 +3,7 @@ const db = require ('../db/db');
 const iniciarSesion = (req, res) => {
     const { email, password } = req.body;
     const sql = 'SELECT * FROM usuarios WHERE email = ?';
+    console.log('Intento de inicio de sesión para:', email);
     
     db.query(sql, [email], async (err, results) => {
         if (err) {
@@ -22,7 +23,7 @@ const iniciarSesion = (req, res) => {
                     biografia: user.biografia 
                 };
                 alert('Inicio de sesión exitoso para:', email);
-                res.json({ success: true, message: 'Inicio de sesión exitoso' });
+                res.json({ success: true, message: 'Inicio de sesión exitoso CONTROLLER' });
             } else {
                 res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
             }
