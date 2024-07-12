@@ -13,6 +13,8 @@ const registroRoutes = require('../routes/registro');
 const usuariosRoutes = require('../routes/usuarios');
 const categoriasRoutes = require('../routes/categorias');
 
+
+//todo lo que necesita para manejar las sesiones y el CORS
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
@@ -26,11 +28,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        secure: true,   // Ajusta según tu configuración de HTTPS
-        httpOnly: true, // Mejora la seguridad al evitar accesos desde JavaScript
-        maxAge: 3600000, // Tiempo de expiración en milisegundos (por ejemplo, 1 hora)
-        domain: '.tp-backend-grupo-12.vercel.app.', // Ajusta según tu dominio
-        path: '/',       // Ruta de la cookie
+        secure: true, 
+        maxAge: 3600000, // Tiempo de expiración (1 hora)
+        domain: '.tp-backend-grupo-12.vercel.app', 
+        path: '/',
     }
 }));
 
@@ -39,7 +40,7 @@ app.use((req, res, next) => {
     next();
 });
 
-
+//usos
 app.use('/comentarios',comentariosRoutes);
 app.use('/index',indexRoutes);
 app.use('/inicioSesion',inicioSesionRoutes);
@@ -48,6 +49,8 @@ app.use('/registro',registroRoutes);
 app.use('/usuarios',usuariosRoutes);
 app.use('/categorias',categoriasRoutes);
 
+
+//usos de archivos estaticos
 app.use('/html', express.static(path.join(__dirname,'..', 'public', 'html')));
 app.use('/css', express.static(path.join(__dirname,'..', 'public', 'css')));
 app.use('/js', express.static(path.join(__dirname,'..', 'public', 'js')));
@@ -77,6 +80,12 @@ app.get('/registro', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'html', 'registro.html'));
 });
 
+//ruta para desarrollador
+app.get('/modoDesarrollador', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'html', 'modoDesarrollador.html'));
+});
+
+
 //ruta para mostrar los datos
 app.get('/usuarios/datos', (req, res) => {
     if (req.session.user) {
@@ -96,12 +105,13 @@ app.post('/logout', (req, res) => {
     });
 });
 
-
+//manejo de errores
 app.use((err, req, res, next) => {
     console.error('Error de aplicación:', err.stack);
     res.status(500).send('Error interno del servidor');
 });
 
+//puerto
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
