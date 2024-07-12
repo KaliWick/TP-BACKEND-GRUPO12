@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         alert('Datos del formulario: ' + JSON.stringify(data));
         try {
-            const response = await fetch('https://tp-backend-grupo-12.vercel.app/inicioSesion/iniciar_sesion', {
+            const response = await fetch('/iniciar_sesion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
