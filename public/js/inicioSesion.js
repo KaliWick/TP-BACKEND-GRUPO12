@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             email: formData.get('email'),
             password: formData.get('contrasenia')
         };
-
+        alert('Datos del formulario: ' + JSON.stringify(data));
         try {
             const response = await fetch('/inicioSesion/iniciar_sesion', {
                 method: 'POST',
@@ -24,10 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const result = await response.json();
-            
+            alert('Resultado del inicio de sesión: ' + JSON.stringify(result));
 
             if (result.success) {
-                window.location.href = '/';
+                alert('Inicio de sesión exitoso, redirigiendo...');
+                // Esperar un breve momento antes de redirigir
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 800); // 500ms de espera
             }
         } catch (error) {
             console.error('Error:', error);

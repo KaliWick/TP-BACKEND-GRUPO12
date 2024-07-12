@@ -5,7 +5,10 @@ const iniciarSesion = (req, res) => {
     const sql = 'SELECT * FROM usuarios WHERE email = ?';
     
     db.query(sql, [email], async (err, results) => {
-        if (err) throw err;
+        if (err) {
+            alert('Error en la consulta:', err);
+            return res.status(500).json({ success: false, message: 'Error interno del servidor' });
+        }
 
         if (results.length > 0) {
             const user = results[0];
@@ -18,6 +21,7 @@ const iniciarSesion = (req, res) => {
                     nombreUsuario: user.nombreUsuario,
                     biografia: user.biografia 
                 };
+                alert('Inicio de sesión exitoso para:', email);
                 res.json({ success: true, message: 'Inicio de sesión exitoso' });
             } else {
                 res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
