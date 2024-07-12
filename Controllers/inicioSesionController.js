@@ -2,8 +2,8 @@ const db = require ('../db/db');
 
 const iniciarSesion = (req, res) => {
     const { email, password } = req.body;
-    const sql = 'SELECT * FROM usuarios WHERE email = ?';
     alert('Intento de inicio de sesión para:', email);
+    const sql = 'SELECT * FROM usuarios WHERE email = ?';
     
     db.query(sql, [email], async (err, results) => {
         if (err) {

@@ -14,6 +14,7 @@ const usuariosRoutes = require('../routes/usuarios');
 const categoriasRoutes = require('../routes/categorias');
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: 'https://tp-backend-grupo-12.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -26,6 +27,12 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false } 
 }));
+
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
+
 
 app.use('/comentarios',comentariosRoutes);
 app.use('/index',indexRoutes);
@@ -70,6 +77,12 @@ app.post('/logout', (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('Server is running');
+app.use((err, req, res, next) => {
+    console.error('Error de aplicación:', err.stack);
+    res.status(500).send('Error interno del servidor');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
