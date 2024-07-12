@@ -52,6 +52,41 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'html', 'index.html'));
 });
 
+app.post('/inicioSesion/iniciar_sesion', (req, res) => {
+    const { email, password } = req.body;
+    console.log('Datos recibidos:', email, password);
+
+    const sql = 'SELECT * FROM usuarios WHERE email = ?';
+
+    db.query(sql, [email], (err, results) => {
+        if (err) {
+            console.error('Error en la consulta:', err);
+            return res.status(500).json({ success: false, message: 'Error en el servidor' });
+        }
+
+        if (results.length > 0) {
+            const user = results[0];
+            if (user.contrasenia === password) {
+                req.session.user = {
+                    id: user.id,
+                    nombre: user.nombre,
+                    apellido: user.apellido,
+                    email: user.email,
+                    nombreUsuario: user.nombreUsuario,
+                    biografia: user.biografia
+                };
+                console.log('Usuario autenticado:', req.session.user);
+                res.json({ success: true, message: 'Inicio de sesión exitoso' });
+            } else {
+                console.log('Contraseña incorrecta');
+                res.status(401).json({ success: false, message: 'Contraseña incorrecta' });
+            }
+        } else {
+            console.log('Usuario no encontrado');
+            res.status(404).json({ success: false, message: 'Usuario no encontrado' });
+        }
+    });
+});
 
 app.get('/usuarios', (req, res) => {
     if (req.session.user) {
