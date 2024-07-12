@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch('/inicioSesion/iniciar_sesion', {
+            const response = await fetch('/inicioSesion/inicioSesion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
