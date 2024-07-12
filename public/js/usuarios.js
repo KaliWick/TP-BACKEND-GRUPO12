@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('https://tp-backend-grupo-12.vercel.app/usuarios/datos');
+        const response = await fetch('/usuarios/datos');
         if (response.ok) {
             const userData = await response.json();
             document.getElementById('usuarioInfo').innerHTML = `
@@ -39,12 +39,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Obtener datos del usuario al cargar la página
-        const response = await fetch('https://tp-backend-grupo-12.vercel.app/usuarios/datos');
+        const response = await fetch('/usuarios/datos');
         if (response.ok) {
             const userData = await response.json();
             // Actualizar el valor del textarea con la biografía del usuario
             document.getElementById('biografia-input').value = userData.biografia || '';
-        } 
+        } else {
+            console.error('No autenticado');
+        }
     } catch (error) {
         console.error('Error:', error);
     }
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
         const biografia = biografiaInput.value;
         try {
-            const response = await fetch('https://tp-backend-grupo-12.vercel.app/usuarios/biografia', {
+            const response = await fetch('/usuarios/biografia', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (response.ok) {
                 alert('Biografía actualizada');
                 // Actualizar la biografía en la sesión del usuario
-                const userDataResponse = await fetch('https://tp-backend-grupo-12.vercel.app/usuarios/datos');
+                const userDataResponse = await fetch('/usuarios/datos');
                 if (userDataResponse.ok) {
                     const userData = await userDataResponse.json();
                     document.getElementById('biografia-input').value = userData.biografia || '';
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     deleteBiografiaButton.addEventListener('click', async () => {
         try {
-            const response = await fetch('https://tp-backend-grupo-12.vercel.app/usuarios/biografia', {
+            const response = await fetch('/usuarios/biografia', {
                 method: 'DELETE',
             });
             const result = await response.json();
@@ -110,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     deleteButton.addEventListener('click', async () => {
         try {
-            const response = await fetch('https://tp-backend-grupo-12.vercel.app/usuarios/delete', {
+            const response = await fetch('/usuarios/delete', {
                 method: 'DELETE',
             });
             if (response.ok) {
@@ -128,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const comentariosResponse = await fetch('https://tp-backend-grupo-12.vercel.app/usuarios/comentarios');
+        const comentariosResponse = await fetch('/usuarios/comentarios');
         const comentariosData = await comentariosResponse.json();
 
         if (comentariosData.comentarios) {

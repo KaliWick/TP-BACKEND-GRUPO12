@@ -11,13 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch('https://tp-backend-grupo-12.vercel.app/inicioSesion/iniciar_sesion', {
+            const response = await fetch('/inicioSesion/iniciar_sesion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data),
-                timeout: 10000
+                body: JSON.stringify(data)
             });
 
             if (!response.ok) {
