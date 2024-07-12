@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             if (response.ok) {
                 sessionStorage.clear(); // Limpiar sessionStorage al cerrar sesión
-                window.location.href = '/html/index.html'; // Redirigir a la página de inicio
+                window.location.href = '/'; // Redirigir a la página de inicio
             } else {
                 alert('Error al cerrar sesión');
             }
@@ -173,7 +173,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             alert('Error al cerrar sesión');
         }
     });
+});
 
+
+document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('/usuarios/datos');
         if (response.ok) {
@@ -199,7 +202,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error:', error);
     }
-
+});
+document.addEventListener('DOMContentLoaded', async () => {
     const biografiaForm = document.getElementById('biografia-form');
     const biografiaInput = document.getElementById('biografia-input');
 
@@ -230,7 +234,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             alert('Error al actualizar la biografía');
         }
     });
-
+});
+document.addEventListener('DOMContentLoaded', async () => {
     const deleteBiografiaButton = document.getElementById('boton-eliminar-biografia');
     deleteBiografiaButton.addEventListener('click', async () => {
         try {
@@ -251,7 +256,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             alert('Error al eliminar la biografía');
         }
     });
-
+});
+document.addEventListener('DOMContentLoaded', async () => {
     const deleteButton = document.getElementById('eliminarUsuario');
     deleteButton.addEventListener('click', async () => {
         try {
@@ -270,7 +276,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             alert('Error al eliminar el usuario');
         }
     });
-
+});
+document.addEventListener('DOMContentLoaded', async () => {
     try {
         const comentariosResponse = await fetch('/usuarios/comentarios');
         const comentariosData = await comentariosResponse.json();
