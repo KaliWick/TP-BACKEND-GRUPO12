@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             const dejarComentario = document.getElementById('dejar-comentario');
                 const loginMessage = document.createElement('p');
-                loginMessage.innerHTML = 'Debes <a href="../html/inicioSesion.html">iniciar sesión</a> para dejar un comentario.';
+                loginMessage.innerHTML = 'Debes <a href="/inicioSesion">iniciar sesión</a> para dejar un comentario.';
                 dejarComentario.appendChild(loginMessage);
         }
     } catch (error) {

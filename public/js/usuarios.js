@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
             });
             if (response.ok) {
-                window.location.href = '/html/index.html';
+                window.location.href = '/';
             } else {
                 alert('Error al cerrar sesión 1 ');
             }
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (response.ok) {
                 alert("Usuario eliminado con exito");
-                window.location.href = '/html/index.html';
+                window.location.href = '/';
             } else {
                 alert('Error al eliminar el usuario 1/2');
             }
