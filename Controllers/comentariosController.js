@@ -28,14 +28,10 @@ const obtenerComentarios = async (req, res) => {
     }
 };
 
-module.exports = {
-    obtenerComentarios
-};
-
 const agregarComentarios = async (req, res) => {
     const { imdbID } = req.params;
     const { contenido } = req.body;
-    const usuarioId = req.body.usuarioId; // Obtén el usuarioId desde el cuerpo de la solicitud
+    const usuarioId = req.session.user.id;
 
     if (!imdbID || !contenido || !usuarioId) {
         return res.status(400).json({ error: 'Datos incompletos' });
@@ -59,7 +55,6 @@ const agregarComentarios = async (req, res) => {
         res.status(500).json({ error: 'Error en el servidor' });
     }
 };
-
 
 module.exports = {
     obtenerComentarios,
