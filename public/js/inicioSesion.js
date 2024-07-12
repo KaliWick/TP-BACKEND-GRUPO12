@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         //ya esta comprobado que trae los datos de forma correcta
         try {
-            const response = await fetch('/inicioSesion/iniciarSesion', {
+            const response = await fetch('/inicioSesion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 console.log('Inicio de sesión exitoso, redirigiendo...');
                 setTimeout(() => {
-                    window.location.href = '/usuarios/datos';
+                    window.location.href = '/';
                 }, 800); 
             }
         } catch (error) {
