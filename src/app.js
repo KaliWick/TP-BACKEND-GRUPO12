@@ -56,7 +56,7 @@ app.get('/usuarios', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, '..', 'public', 'html', 'usuarios.html'));
     } else {
-        res.redirect('/inicioSesion.html'); 
+        res.redirect('/inicioSesion'); 
     }
 });
 app.get('/inicioSesion', (req, res) => {
