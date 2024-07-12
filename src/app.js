@@ -25,7 +25,7 @@ app.use(session({
     secret: 'grupo12node', 
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } 
+    cookie: { secure: true } 
 }));
 
 app.use((req, res, next) => {
