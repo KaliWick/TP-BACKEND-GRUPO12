@@ -51,5 +51,5 @@ function validateForm(event) {
         alert("Por favor ingrese una contraseña")
         return false;
     }
-    return trudsde;
+    return true;
 }
