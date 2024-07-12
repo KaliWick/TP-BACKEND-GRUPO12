@@ -28,7 +28,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <p><span class="span-datos">Usuario:</span> ${userData.nombreUsuario}<p>
                 <p><span class="span-datos">Email:</span> ${userData.email}</p>
             `;
-        } else {
+        }  else {
+            const errorText = await response.text(); // Obtén el texto del error
+            console.error('Error al obtener los datos del usuario:', errorText);
             alert('Error al obtener los datos del usuario');
         }
     } catch (error) {
