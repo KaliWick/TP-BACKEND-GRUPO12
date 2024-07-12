@@ -59,6 +59,9 @@ app.get('/usuarios', (req, res) => {
         res.redirect('/inicioSesion.html'); 
     }
 });
+app.get('/inicioSesion', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'html', 'inicioSesion.html'));
+});
 app.get('/usuarios/datos', (req, res) => {
     if (req.session.user) {
         res.json(req.session.user);
@@ -66,7 +69,9 @@ app.get('/usuarios/datos', (req, res) => {
         res.status(401).json({ message: 'No autenticado' });
     }
 });
-
+app.get('/registro', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'html', 'registro.html'));
+});
 app.post('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
