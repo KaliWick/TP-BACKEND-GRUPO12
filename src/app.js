@@ -3,7 +3,6 @@ const session = require('express-session');
 const cors = require('cors');
 const app = express();
 const path = require('path');
-const inicioSesionController = require('../controllers/inicioSesionController'); 
 
 
 const comentariosRoutes = require('../routes/comentarios');
@@ -52,8 +51,6 @@ app.use('/img', express.static(path.join(__dirname,'..', 'public', 'img')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'html', 'index.html'));
 });
-
-app.post('/inicioSesion/iniciar_sesion', inicioSesionController.iniciarSesion);
 
 app.get('/usuarios', (req, res) => {
     if (req.session.user) {
