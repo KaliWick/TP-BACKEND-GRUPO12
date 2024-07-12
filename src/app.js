@@ -29,9 +29,10 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         secure: true, 
-        maxAge: 3600000, // Tiempo de expiración (1 hora)
+        maxAge: null,
         domain: '.tp-backend-grupo-12.vercel.app', 
         path: '/',
+        expires: false
     }
 }));
 
