@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             email: formData.get('email'),
             password: formData.get('contrasenia')
         };
-        
-        alert('Datos del formulario: ' + JSON.stringify(data));
+        //ya esta comprobado que trae los datos de forma correcta
         try {
             const response = await fetch('/inicioSesion/iniciarSesion', {
                 method: 'POST',
@@ -19,8 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify(data)
             });
-
-            console.log('Respuesta del servidor:', response);
 
             if (!response.ok) {
                 throw new Error('Error en la solicitud');

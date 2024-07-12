@@ -47,11 +47,12 @@ app.use('/css', express.static(path.join(__dirname,'..', 'public', 'css')));
 app.use('/js', express.static(path.join(__dirname,'..', 'public', 'js')));
 app.use('/img', express.static(path.join(__dirname,'..', 'public', 'img')));
 
-
+//ruta para el menu principal
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'html', 'index.html'));
 });
 
+//ruta para usuarios
 app.get('/usuarios', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, '..', 'public', 'html', 'usuarios.html'));
@@ -59,9 +60,18 @@ app.get('/usuarios', (req, res) => {
         res.redirect('/inicioSesion'); 
     }
 });
+
+//ruta para iniciar sesion
 app.get('/inicioSesion', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'html', 'inicioSesion.html'));
 });
+
+//ruta para registro
+app.get('/registro', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'html', 'registro.html'));
+});
+
+//ruta para mostrar los datos
 app.get('/usuarios/datos', (req, res) => {
     if (req.session.user) {
         res.json(req.session.user);
@@ -69,9 +79,8 @@ app.get('/usuarios/datos', (req, res) => {
         res.status(401).json({ message: 'No autenticado' });
     }
 });
-app.get('/registro', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'html', 'registro.html'));
-});
+
+//ruta para cerrar la sesion
 app.post('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
@@ -80,6 +89,7 @@ app.post('/logout', (req, res) => {
         res.redirect('/inicioSesion');
     });
 });
+
 
 app.use((err, req, res, next) => {
     console.error('Error de aplicación:', err.stack);
