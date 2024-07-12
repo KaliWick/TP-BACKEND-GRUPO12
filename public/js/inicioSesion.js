@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         alert('Datos del formulario: ' + JSON.stringify(data));
         try {
-            const response = await fetch('/inicioSesion/inicioSesion', {
+            const response = await fetch('/inicioSesion/iniciar_sesion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -51,5 +51,5 @@ function validateForm(event) {
         alert("Por favor ingrese una contraseña")
         return false;
     }
-    return true;
+    return trudsde;
 }
