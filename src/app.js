@@ -77,7 +77,7 @@ app.post('/logout', (req, res) => {
         if (err) {
             return res.status(500).json({ message: 'Error al cerrar sesión' });
         }
-        res.redirect('/html/inicioSesion.html');
+        res.redirect('/inicioSesion');
     });
 });
 
