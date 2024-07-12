@@ -25,7 +25,13 @@ app.use(session({
     secret: 'grupo12node', 
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true } 
+    cookie: {
+        secure: true,   // Ajusta según tu configuración de HTTPS
+        httpOnly: true, // Mejora la seguridad al evitar accesos desde JavaScript
+        maxAge: 3600000, // Tiempo de expiración en milisegundos (por ejemplo, 1 hora)
+        domain: '.tp-backend-grupo-12.vercel.app.', // Ajusta según tu dominio
+        path: '/',       // Ruta de la cookie
+    }
 }));
 
 app.use((req, res, next) => {
