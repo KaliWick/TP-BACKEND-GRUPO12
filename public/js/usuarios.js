@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/usuarios/datos');
+        const response = await fetch('https://tp-backend-grupo-12.vercel.app/usuarios/datos');
         if (response.ok) {
             const userData = await response.json();
             document.getElementById('usuarioInfo').innerHTML = `
