@@ -18,19 +18,15 @@ app.use(cors({
     origin: 'https://tp-backend-grupo-12.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
   }));
 
-  app.use(session({
+app.use(session({
     secret: 'grupo12node', 
     resave: false,
     saveUninitialized: true,
-    cookie: {
-        secure: true, 
-        httpOnly: true,
-        sameSite: 'lax' 
-    }
+    cookie: { secure: false } 
 }));
+
 app.use('/comentarios',comentariosRoutes);
 app.use('/index',indexRoutes);
 app.use('/inicioSesion',inicioSesionRoutes);

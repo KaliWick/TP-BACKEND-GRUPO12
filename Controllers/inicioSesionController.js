@@ -18,7 +18,6 @@ const iniciarSesion = (req, res) => {
                     nombreUsuario: user.nombreUsuario,
                     biografia: user.biografia 
                 };
-                alert('guardaste la req');
                 res.json({ success: true, message: 'Inicio de sesión exitoso' });
             } else {
                 res.status(401).json({ success: false, message: 'Contraseña incorrecta' });

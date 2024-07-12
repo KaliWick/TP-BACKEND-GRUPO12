@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
             email: formData.get('email'),
             password: formData.get('contrasenia')
         };
-        alert('Datos del formulario: ' + JSON.stringify(data));
+
         try {
-            const response = await fetch('/iniciar_sesion', {
+            const response = await fetch('/inicioSesion/iniciar_sesion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -24,10 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const result = await response.json();
-            alert('Resultado del inicio de sesión: ' + JSON.stringify(result));
+            
 
             if (result.success) {
-                alert('Inicio de sesión exitoso, redirigiendo...');
                 window.location.href = '/';
             }
         } catch (error) {
@@ -53,4 +52,3 @@ function validateForm(event) {
     }
     return true;
 }
-
